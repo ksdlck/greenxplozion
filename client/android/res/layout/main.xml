@@ -4,9 +4,44 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TextView
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello" />
+            android:layout_weight="0"
+        >
 
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            
+            android:text="@string/categoryTitle" 
+            />
+
+	    <Button
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        
+	        android:text="Badges" 
+	        
+	        android:visibility="gone"
+	        />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+         
+        android:layout_weight="1"
+         
+        android:entries="@array/keyCatTest"
+        >
+    </ListView>
+
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_entries" />
+    
 </LinearLayout>

@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, GreenxplozionActivity!</string>
     <string name="app_name">Greenxplozion</string>
+    
+    <string name="mainTitleBar">Welcome with Greenxplozion</string>
+    <string name="categoryTitle">Choose a Categorie:</string>
+    <string name="challengeTitle">Choose a Challenge:</string>
+    
+    <string name="no_entries">No Entries available</string>
+    
+    
 
 </resources>

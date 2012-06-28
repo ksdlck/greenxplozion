@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- NOTE (fwild): Turn off lint warnings about this file cause it only contains links to strings anyway-->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+    <!-- TEST CATS -->
+    <string-array name="keyCatTest">
+        <item>Demo Cat 1</item>
+        <item>Demo Cat 2</item>
+        <item>Demo Cat 3</item>
+    </string-array>
+
+</resources>

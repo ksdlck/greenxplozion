@@ -4,12 +4,12 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-@Path("/challenges/{category}")
-public class ChallengesRestService {
+@Path("/categories")
+public class CategoriesRestService {
 
 	@GET
 	@Produces("text/plain")
-	public String getChallengesByCategory(){
-		return null;
+	public String getCategories(){
+		
 	}
 }

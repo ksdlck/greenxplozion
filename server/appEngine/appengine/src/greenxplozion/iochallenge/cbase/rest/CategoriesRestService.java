@@ -10,6 +10,6 @@ public class CategoriesRestService {
 	@GET
 	@Produces("text/plain")
 	public String getCategories(){
-		
+		return null;
 	}
 }

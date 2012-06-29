@@ -21,26 +21,30 @@ public class CategoriesGateway {
 	private static final String CATEGORY_NAME_PREFIX = "Name_";
 
 	public CategoriesGateway() {
-		Key key = KeyFactory.stringToKey("aglub19hcHBfaWRyHAsSCENhdGVnb3J5GAEMCxIIQ2F0ZWdvcnkYEAw");
-		
-		Map<String, String> localizedNames = new HashMap<String, String>();
-		localizedNames.put("de", "Grünes Zeug");
-		localizedNames.put("en", "Green stuff");
-		Category cat = new Category(key, localizedNames);
-		this.save(cat);
-		Key key2 = KeyFactory.stringToKey("aglub19hcHBfaWRyHAsSCENhdGVnb3J5GAIMCxIIQ2F0ZWdvcnkYEQw");
-		Map<String, String> localizedNames2 = new HashMap<String, String>();
-		localizedNames2.put("de", "Blaues Zeug");
-		localizedNames2.put("en", "Blue stuff");
-		Category cat2 = new Category(key2, localizedNames2);
-		this.save(cat2);
-		Key key3 = KeyFactory.stringToKey("aglub19hcHBfaWRyHAsSCENhdGVnb3J5GAMMCxIIQ2F0ZWdvcnkYEgw");
-		Map<String, String> localizedNames3 = new HashMap<String, String>();
-		localizedNames3.put("de", "Alles andere");
-		localizedNames3.put("en", "Everything else");
-		Category cat3 = new Category(key3, localizedNames3);
-		this.save(cat3);
-
+		List<Category> list = this.fetchAll();
+		if (list.size() == 0) {
+			Map<String, String> localizedNames = new HashMap<String, String>();
+			localizedNames.put("de", "Grünes Zeug");
+			localizedNames.put("en", "Green stuff");
+			Category cat = new Category(
+					"aglub19hcHBfaWRyHAsSCENhdGVnb3J5GAEMCxIIQ2F0ZWdvcnkYEAw",
+					localizedNames);
+			this.save(cat);
+			Map<String, String> localizedNames2 = new HashMap<String, String>();
+			localizedNames2.put("de", "Blaues Zeug");
+			localizedNames2.put("en", "Blue stuff");
+			Category cat2 = new Category(
+					"aglub19hcHBfaWRyHAsSCENhdGVnb3J5GAIMCxIIQ2F0ZWdvcnkYEQw",
+					localizedNames2);
+			this.save(cat2);
+			Map<String, String> localizedNames3 = new HashMap<String, String>();
+			localizedNames3.put("de", "Alles andere");
+			localizedNames3.put("en", "Everything else");
+			Category cat3 = new Category(
+					"aglub19hcHBfaWRyHAsSCENhdGVnb3J5GAMMCxIIQ2F0ZWdvcnkYEgw",
+					localizedNames3);
+			this.save(cat3);
+		}
 	}
 
 	public void save(Category category) {
@@ -48,7 +52,7 @@ public class CategoriesGateway {
 		if (category.getKey() == null) {
 			key = KeyFactory.createKey(CATEGORY_KIND, CATEGORY_KEY_NAME);
 		} else {
-			key = category.getKey();
+			key = KeyFactory.stringToKey(category.getKey());
 		}
 
 		Entity entity = new Entity(CATEGORY_KIND, key);
@@ -59,7 +63,7 @@ public class CategoriesGateway {
 		DatastoreService service = DatastoreServiceFactory
 				.getDatastoreService();
 		service.put(entity);
-	
+
 	}
 
 	public List<Category> fetchAll() {
@@ -70,13 +74,10 @@ public class CategoriesGateway {
 				FetchOptions.Builder.withDefaults());
 		List<Category> result = new LinkedList<Category>();
 		for (Entity entity : entities) {
-			Key key = null;
+			Key key = entity.getKey();
 			Map<String, String> localizedNames = new HashMap<String, String>();
 			for (Entry<String, Object> property : entity.getProperties()
 					.entrySet()) {
-				if (CATEGORY_KEY_NAME.equals(property.getKey())) {
-					key = (Key) property.getValue();
-				}
 				if (property.getKey().startsWith(CATEGORY_NAME_PREFIX)) {
 					localizedNames.put(
 							property.getKey().substring(
@@ -84,7 +85,7 @@ public class CategoriesGateway {
 							(String) property.getValue());
 				}
 			}
-			result.add(new Category(key, localizedNames));
+			result.add(new Category(key.toString(), localizedNames));
 		}
 		return result;
 	}

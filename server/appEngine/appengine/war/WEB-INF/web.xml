@@ -8,6 +8,8 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>Appengine</servlet-name>
 		<servlet-class>greenxplozion.iochallenge.cbase.AppengineServlet</servlet-class>
 	</servlet>
+	
+	
 	<servlet-mapping>
 		<servlet-name>Appengine</servlet-name>
 		<url-pattern>/appengine</url-pattern>
@@ -15,30 +17,29 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-	
-	
-   <init-param>
-      <!-- speed up initial Jersey loading by deactivating WADL -->
-      <param-name>com.sun.jersey.config.feature.DisableWADL</param-name>
-      <param-value>true</param-value>
-    </init-param>
-
-    <servlet>
-      <servlet-name>Jersey Web Application</servlet-name>
-      <servlet-class>
-        com.sun.jersey.spi.container.servlet.ServletContainer
-      </servlet-class>
-      <init-param>
-          <param-name>com.sun.jersey.config.property.packages</param-name>
-          <!-- Enter your Jersey resources to speed up initial Jersey loading -->
-          <!-- You can separate the java packages using , -->
-          <param-value>greenxplozion.iochallenge.cbase.rest</param-value>
+    
+    
+<servlet>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>greenxplozion.iochallenge.cbase.rest</param-value>
         </init-param>
-        <load-on-startup>1</load-on-startup>
+        <init-param>
+        <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+        <param-value>true</param-value>
+    </init-param>
+        
+         <load-on-startup>1</load-on-startup>
     </servlet>
-
     <servlet-mapping>
-      <servlet-name>Jersey Web Application</servlet-name>
-      <url-pattern>/</url-pattern>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <url-pattern>/resources/*</url-pattern>
     </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
 </web-app>

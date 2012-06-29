@@ -10,14 +10,38 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
-            android:name=".GreenxplozionActivity"
-            android:label="@string/app_name" >
+            android:name=".gui.MainActivity"
+            android:label="@string/mainTitleBar"
+            android:theme="@android:style/Theme.Light" 
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".gui.ChallengesActivity"
+            android:label="@string/categoryTitle" 
+            android:theme="@android:style/Theme.Light" 
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".gui.ChallengeDetailActivity"
+            android:label="@string/challengeTitle" 
+            android:theme="@android:style/Theme.Light" 
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        
+        
     </application>
 
 </manifest>
